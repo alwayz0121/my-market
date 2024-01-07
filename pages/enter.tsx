@@ -1,7 +1,17 @@
 import { cls } from '@/libs/utils';
+import { NextPage } from 'next';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Input from '../components/input';
 
-export default function Enter() {
+interface Enterform {
+    email?: string;
+    phone?: string;
+}
+
+const Enter: NextPage = () => {
+    const { register } = useForm<Enterform>();
+
     const [method, setMethod] = useState<'email' | 'phone'>('email');
     const onEmailClick = () => setMethod('email');
     const onPhoneClick = () => setMethod('phone');
@@ -38,7 +48,7 @@ export default function Enter() {
                         </button>
                     </div>
                 </div>
-                <form className="flex flex-col mt-8">
+                <form className="flex flex-col mt-8 space-y-4">
                     <label
                         htmlFor="input"
                         className="text-sm font-medium text-gray-700"
@@ -48,26 +58,22 @@ export default function Enter() {
                     </label>
                     <div className="mt-1">
                         {method === 'email' ? (
-                            <input
-                                id="input"
+                            <Input
+                                name="email"
+                                label="Email address"
                                 type="email"
-                                className="appearance-none w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                                 required
                             />
                         ) : null}
 
                         {method === 'phone' ? (
-                            <div className="flex rounded-md shadow-sm">
-                                <span className="flex items-center justify-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 select-none text-sm">
-                                    +82
-                                </span>
-                                <input
-                                    id="input"
-                                    type="number"
-                                    className="border-transparent appearance-none w-full px-3 py-2 border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                                    required
-                                />
-                            </div>
+                            <Input
+                                label="Phone number"
+                                name="phone"
+                                type="number"
+                                kind="phone"
+                                required
+                            />
                         ) : null}
                     </div>
 
@@ -115,4 +121,6 @@ export default function Enter() {
             </div>
         </div>
     );
-}
+};
+
+export default Enter;

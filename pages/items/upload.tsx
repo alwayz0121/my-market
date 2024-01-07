@@ -1,3 +1,4 @@
+import Input from '@/components/input';
 import type { NextPage } from 'next';
 
 const Upload: NextPage = () => {
@@ -25,26 +26,14 @@ const Upload: NextPage = () => {
                 </label>
             </div>
             <div>
-                <label
-                    className="text-sm font-medium text-gray-700"
-                    htmlFor="price"
-                >
-                    Price
-                </label>
-                <div className="rounded-md relative shadow-sm flex items-center">
-                    <div className="absolute left-0 pl-3 flex items-center justify-center pointer-events-none">
-                        <span className="text-gray-500 text-sm">$</span>
-                    </div>
-                    <input
-                        id="price"
-                        className="appearance-none pl-7 w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                        type="text"
-                        placeholder="0.00"
-                    />
-                    <div className="absolute right-0 pr-3 flex items-center pointer-events-none">
-                        <span className="text-gray-500">USD</span>
-                    </div>
-                </div>
+                <Input required label="Name" name="name" type="text" />
+                <Input
+                    label="Price"
+                    type="text"
+                    placeholder="0.00"
+                    name="price"
+                    kind="price"
+                />
             </div>
             <div>
                 <label
