@@ -1,35 +1,27 @@
 import Button from '@/components/button';
 import Input from '@/components/input';
+import Layout from '@/components/layout';
+import Textarea from '@/components/textarea';
 import type { NextPage } from 'next';
 
 const Create: NextPage = () => {
     return (
-        <div className=" space-y-5 py-10 px-4">
-            <Input label="Name" name="name" type="text" />
-            <Input
-                label="Price"
-                name="price"
-                type="text"
-                placeholder="0.00"
-                kind="price"
-                required
-            />
-
-            <div>
-                <label
-                    htmlFor="description"
-                    className="mb-1 block text-sm font-medium text-gray-700"
-                >
-                    Description
-                </label>
-                <textarea
-                    id="description"
-                    className="mt-1 shadow-sm w-full focus:ring-orange-500 rounded-md border-gray-300 focus:border-orange-500 "
-                    rows={4}
+        <Layout canGoBack title="Go Live">
+            <form className=" p-4 space-y-4">
+                <Input label="Name" name="name" type="text" />
+                <Input
+                    label="Price"
+                    name="price"
+                    type="text"
+                    placeholder="0.00"
+                    kind="price"
+                    required
                 />
-            </div>
-            <Button text="Go live" />
-        </div>
+
+                <Textarea name="description" label="Description" />
+                <Button text="Go live" />
+            </form>
+        </Layout>
     );
 };
 
